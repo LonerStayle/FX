@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_goToTheNoticeBoardUpload"
+        android:icon="@drawable/ic_baseline_create_24"
+        android:title="글쓰기"
+        app:showAsAction="ifRoom"/>
+
+
+</menu>

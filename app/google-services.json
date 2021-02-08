@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "810176040170",
+    "project_id": "fxnoticeboard",
+    "storage_bucket": "fxnoticeboard.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810176040170:android:c8f755c9a08d48ffcb1b93",
+        "android_client_info": {
+          "package_name": "kr.loner.fx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "810176040170-ihn1g2si7tbf763auggnre06cliugdls.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kr.loner.fx",
+            "certificate_hash": "493d0543a187645dc74027e6f770d1d5924596fe"
+          }
+        },
+        {
+          "client_id": "810176040170-t56ias5o7qfg89uavn5c2nu935jv4be9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7FO3EZ5Bi1pig1Ln-CCaXh9axKsGryrQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "810176040170-t56ias5o7qfg89uavn5c2nu935jv4be9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

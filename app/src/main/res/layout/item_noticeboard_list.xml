@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="noticeBoard"
+            type="kr.loner.fx.db.entity.NoticeBoard" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_postUserImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_round_person_24" />
+
+    <TextView
+        android:id="@+id/tv_postUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@{noticeBoard.name}"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_postUserImage"
+        app:layout_constraintStart_toEndOf="@+id/iv_postUserImage"
+        app:layout_constraintTop_toTopOf="@+id/iv_postUserImage" />
+
+    <TextView
+        android:id="@+id/tv_postUploadTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:timeStampConverter="@{noticeBoard.timestamp}"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_postUserName"
+        app:layout_constraintEnd_toEndOf="@+id/tv_postCommentCount"
+        app:layout_constraintTop_toTopOf="@+id/tv_postUserName" />
+
+    <TextView
+        android:id="@+id/tv_postContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="12sp"
+        android:maxHeight="300dp"
+        android:maxLines="2"
+        android:text="@{noticeBoard.content}"
+        app:layout_constraintStart_toStartOf="@+id/iv_postUserImage"
+        app:layout_constraintTop_toBottomOf="@+id/iv_postUserImage" />
+
+
+
+    <TextView
+        android:id="@+id/tv_postCommentCount"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:maxLines="1"
+        android:text="@{String.valueOf(noticeBoard.replyList.size())}"
+        android:textColor="@color/colorCommand"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_postLikeCount"
+        app:drawableStartCompat="@drawable/ic_baseline_sms_16" />
+
+    <TextView
+        android:id="@+id/tv_postLikeCount"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="7dp"
+        android:drawableStart="@drawable/background_like_btn"
+        android:maxLines="1"
+        android:text="@{String.valueOf(noticeBoard.likeCountList.size())}"
+        android:textColor="@color/colorLike"
+        app:layout_constraintEnd_toStartOf="@+id/tv_postCommentCount"
+        app:layout_constraintTop_toBottomOf="@+id/tv_postUploadTime" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="#dcdcdc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_postLikeCount" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

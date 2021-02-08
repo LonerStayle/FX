@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    app:startDestination="@id/noticeBoardFragment">
+
+    <fragment
+        android:id="@+id/noticeBoardFragment"
+        android:name="kr.loner.fx.ui.dest.main.NoticeBoardFragment"
+        android:label="fragment_share"
+        tools:layout="@layout/fragment_share" />
+    <fragment
+        android:id="@+id/shareFragment"
+        android:name="kr.loner.fx.ui.dest.main.ShareFragment"
+        android:label="ShareFragment" />
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="kr.loner.fx.ui.dest.main.GameFragment"
+        android:label="GameFragment" />
+</navigation>
