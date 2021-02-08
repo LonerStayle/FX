@@ -7,7 +7,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @BindingAdapter("app:timeStampConverter")
-fun timeStampConverter(tv: TextView,timestamp: Timestamp){
+fun timeStampConverter(tv: TextView,timestamp: Timestamp?){
+    timestamp?:return
     SimpleDateFormat("yyyy년 MM월 DD일 a hh시 mm분", Locale.KOREAN).format(timestamp.toDate()).also {
         tv.text = it
     }

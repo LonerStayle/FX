@@ -48,10 +48,8 @@ class NoticeBoardAdapter(
         } else {
             val binding = DataBindingUtil.inflate<ItemNoticeboardNotificationListBinding>(
                 LayoutInflater.from(parent.context),
-                R.layout.item_noticeboard_notification_list,
-                parent,
-                false
-            )
+                R.layout.item_noticeboard_notification_list, parent,
+                false)
             ViewHolder(binding)
         }
 

@@ -13,10 +13,9 @@ class MainFragment :
         setBottomNavi()
     }
     private fun setBottomNavi() {
-        (parentFragmentManager.findFragmentById(R.id.nav_host_fragment_container_main)
+        (childFragmentManager.findFragmentById(R.id.nav_host_fragment_container_main)
                 as NavHostFragment?).also {
             NavigationUI.setupWithNavController(binding.bnvMain, it!!.navController)
-            binding.bnvMain.itemIconTintList = null
         }
     }
 }

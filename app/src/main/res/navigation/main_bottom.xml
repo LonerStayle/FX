@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/noticeBoardFragment"
         android:name="kr.loner.fx.ui.dest.main.NoticeBoardFragment"
-        android:label="fragment_share"
+        android:label="noticeBoardFragment"
         tools:layout="@layout/fragment_share" />
     <fragment
         android:id="@+id/shareFragment"
