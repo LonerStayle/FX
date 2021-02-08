@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/game">
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/game"
+    app:startDestination="@id/gameFlowFragment">
 
+    <fragment
+        android:id="@+id/gameFlowFragment"
+        android:name="kr.loner.fx.ui.dest.game.GameFlowFragment"
+        android:label="GameFlowFragment" />
 </navigation>
