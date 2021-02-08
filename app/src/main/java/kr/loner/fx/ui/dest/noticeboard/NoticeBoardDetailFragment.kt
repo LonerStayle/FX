@@ -11,6 +11,5 @@ class NoticeBoardDetailFragment : BaseFragment<FragmentNoticeboardDetailBinding>
 ) {
     override fun FragmentNoticeboardDetailBinding.setDataBind() {
         noticeBoard = requireActivity().intent.getParcelableExtra("noticeBoard")
-
     }
 }

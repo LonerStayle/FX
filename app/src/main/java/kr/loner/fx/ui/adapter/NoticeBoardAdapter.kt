@@ -1,56 +1,58 @@
 package kr.loner.fx.ui.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import kr.loner.fx.R
 import kr.loner.fx.databinding.ItemNoticeboardListBinding
 import kr.loner.fx.databinding.ItemNoticeboardNotificationListBinding
 import kr.loner.fx.db.entity.NoticeBoard
+import kr.loner.fx.ui.activity.NoticeBoardActivity
 import kr.loner.fx.ui.dest.main.NoticeBoardFragment.Companion.LIST_ADAPTER
+
 
 class NoticeBoardAdapter(
     var noticeBoardtList: List<NoticeBoard> = listOf(),
-    val clickEvent: (NoticeBoard) -> Unit,
-) :
-    RecyclerView.Adapter<NoticeBoardAdapter.ViewHolder>() {
-    var AdapterMode: Int? = null
+    var adapterMode: Int
+) : RecyclerView.Adapter<NoticeBoardAdapter.ViewHolder>() {
 
 
-    inner class ViewHolder : RecyclerView.ViewHolder {
-        var listBinding: ItemNoticeboardListBinding? = null
-        var notificationBinding: ItemNoticeboardNotificationListBinding? = null
-
-        constructor(binding: ItemNoticeboardListBinding) : super(binding.root) {
-            listBinding = binding
-        }
-
-        constructor(binding: ItemNoticeboardNotificationListBinding) : super(binding.root) {
-            notificationBinding = binding
-        }
+    inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+        var binding: ViewDataBinding? = null
 
         init {
-            listBinding?.root?.setOnClickListener {
-                clickEvent(noticeBoardtList[adapterPosition]) }
-            notificationBinding?.root?.setOnClickListener {
-                clickEvent(noticeBoardtList[adapterPosition]) }
+            binding = if (adapterMode == LIST_ADAPTER)
+                DataBindingUtil.bind<ItemNoticeboardListBinding>(v)
+            else
+                DataBindingUtil.bind<ItemNoticeboardNotificationListBinding>(v)
+
+            binding?.root?.setOnClickListener { view ->
+                Intent(view.context, NoticeBoardActivity::class.java).also {
+                    it.putExtra("noticeBoard", noticeBoardtList[adapterPosition])
+                    view.context.startActivity(it)
+                }
+            }
         }
+
+
     }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        if (AdapterMode == LIST_ADAPTER) {
-            val binding = DataBindingUtil.inflate<ItemNoticeboardListBinding>(
-                LayoutInflater.from(parent.context), R.layout.item_noticeboard_list, parent, false
-            )
-            ViewHolder(binding)
+        if (adapterMode == LIST_ADAPTER) {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_noticeboard_list, parent, false)
+            ViewHolder(view)
         } else {
-            val binding = DataBindingUtil.inflate<ItemNoticeboardNotificationListBinding>(
-                LayoutInflater.from(parent.context),
-                R.layout.item_noticeboard_notification_list, parent,
-                false)
-            ViewHolder(binding)
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_noticeboard_notification_list, parent, false)
+            ViewHolder(view)
+
         }
 
 
@@ -58,10 +60,12 @@ class NoticeBoardAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        if (AdapterMode == LIST_ADAPTER)
-            holder.listBinding?.noticeBoard = noticeBoardtList[position]
+        if (adapterMode == LIST_ADAPTER)
+            (holder.binding as ItemNoticeboardListBinding).noticeBoard =
+                noticeBoardtList[position]
         else
-            holder.notificationBinding?.noticeBoard = noticeBoardtList[position]
+            (holder.binding as ItemNoticeboardNotificationListBinding).noticeBoard =
+                noticeBoardtList[position]
 
     }
 

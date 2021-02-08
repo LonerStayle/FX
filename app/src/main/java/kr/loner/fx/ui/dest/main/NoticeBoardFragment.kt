@@ -20,23 +20,9 @@ class NoticeBoardFragment : BaseFragment<FragmentNoticeboardBinding>(
     override fun FragmentNoticeboardBinding.setDataBind() {
         vm!!.getMuckDataList()
         vm!!.muckDataList.observe(requireActivity(),{
-            setObserver(it)
+            vpNoticeBoardNotification.adapter = NoticeBoardAdapter(it,NOTIFICATION_ADAPTER )
+            rvPostList.adapter = NoticeBoardAdapter(it, LIST_ADAPTER)
         })
-    }
-
-    private fun FragmentNoticeboardBinding.setObserver(muckDataList:List<NoticeBoard>) {
-        val adapter = NoticeBoardAdapter(muckDataList){ noticeBoard->
-            Intent(requireContext(), NoticeBoardActivity::class.java).also {
-                it.putExtra("noticeBoard",noticeBoard)
-                startActivity(it)
-            }
-        }
-
-//        adapter.AdapterMode = NOTIFICATION_ADAPTER
-//        vpNoticeBoardNotification.adapter = adapter
-
-        adapter.AdapterMode = LIST_ADAPTER
-        rvPostList.adapter = adapter
     }
 
     //이 프레그먼트에서만 게시판 글쓰기 버튼 활성화 설정

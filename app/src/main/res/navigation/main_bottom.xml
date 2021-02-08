@@ -3,17 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    app:startDestination="@id/noticeBoardFragment">
+    app:startDestination="@id/shareFragment">
+
+    <fragment
+        android:id="@+id/shareFragment"
+        android:name="kr.loner.fx.ui.dest.main.ShareFragment"
+        android:label="ShareFragment"
+        tools:layout="@layout/fragment_share"/>
 
     <fragment
         android:id="@+id/noticeBoardFragment"
         android:name="kr.loner.fx.ui.dest.main.NoticeBoardFragment"
         android:label="noticeBoardFragment"
-        tools:layout="@layout/fragment_share" />
-    <fragment
-        android:id="@+id/shareFragment"
-        android:name="kr.loner.fx.ui.dest.main.ShareFragment"
-        android:label="ShareFragment" />
+         />
+
     <fragment
         android:id="@+id/gameFragment"
         android:name="kr.loner.fx.ui.dest.main.GameFragment"
