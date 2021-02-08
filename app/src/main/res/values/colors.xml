@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorLike">#D50000</color>
     <color name="colorCommand">#0091EA</color>
+    <color name="colorMainFragmentBack">#D0000000</color>
+    <color name="colorButtonSelectAfter">#FFB948</color>
+    <color name="colorButtonSelectBefore">#474444</color>
 </resources>
