@@ -46,7 +46,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.palette:palette-ktx:1.0.0'
@@ -62,7 +62,12 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:26.4.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-firestore-ktx'
-    annotationProcessor 'androidx.room:room-compiler:2.2.6'
+
+    //룸
+    implementation 'android.arch.persistence.room:runtime:2.2.6'
+    kapt 'androidx.room:room-compiler:2.2.6'
+    implementation "androidx.room:room-ktx:2.2.6"
+    testImplementation "androidx.room:room-testing:2.2.6"
 
     //코루틴
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'

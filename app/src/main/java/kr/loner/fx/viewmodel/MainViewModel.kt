@@ -6,7 +6,9 @@ import androidx.lifecycle.viewModelScope
 
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kr.loner.fx.db.entity.NoticeBoard
 import kr.loner.fx.db.entity.Reply
 import kr.loner.fx.db.entity.UserData
@@ -25,18 +27,19 @@ class MainViewModel(private val userRepository: UserRepository) : ViewModel() {
     val noticeBoardList: LiveData<List<NoticeBoard>>
         get() = _noticeBoardList
 
+
     fun userDataUpdate(user: UserData) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             userRepository.update(user)
         }
     }
 
-    fun getMuckDataList() {
+    fun getNoticeBoardList() {
         db.collection("NoticeBoard").get().addOnSuccessListener {
-            _noticeBoardList.postValue(it.toObjects(NoticeBoard::class.java))
+            _noticeBoardList.postValue(it.toObjects(NoticeBoard::class.java).toList())
         }
     }
     fun setNoticeBoard(noticeBoard: NoticeBoard){
-        db.collection("NoticeBoard").parent?.set(noticeBoard)
+        db.collection("NoticeBoard").document().set(noticeBoard)
     }
 }

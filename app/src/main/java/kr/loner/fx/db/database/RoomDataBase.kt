@@ -4,12 +4,16 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import kr.loner.fx.db.dao.RoomDao
+import kr.loner.fx.db.entity.UserData
+import kr.loner.fx.db.entity.UserDataLikeListConverter
 
 
-@Database(entities = [Class::class],version = 1)
+@Database(entities = [UserData::class],version = 2)
+@TypeConverters(UserDataLikeListConverter::class)
 abstract class RoomDataBase : RoomDatabase() {
-    abstract val itDao: RoomDao
+    abstract val userDao: RoomDao
 
     companion object{
         @Volatile
@@ -18,11 +22,10 @@ abstract class RoomDataBase : RoomDatabase() {
             INSTANCE?:Room.databaseBuilder(
                 context,
                 RoomDataBase::class.java,
-                "Room_DataBase"
+                "UserDatabase"
             ).fallbackToDestructiveMigration().build().also {
                 INSTANCE = it
             }
         }
     }
-
 }

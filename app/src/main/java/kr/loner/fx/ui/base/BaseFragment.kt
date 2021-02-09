@@ -30,7 +30,7 @@ abstract class BaseFragment<VDB : ViewDataBinding>(
         binding = this
         getBinding {
                 setVariable(BR.vm, ViewModelProvider(this@BaseFragment,
-                    ViewModelFactory(RoomDataBase.getInstance(requireContext()).itDao)
+                    ViewModelFactory(RoomDataBase.getInstance(requireContext()).userDao)
                     )[viewModelCls])
 
         }

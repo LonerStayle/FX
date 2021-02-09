@@ -15,9 +15,14 @@ fun timeStampConverter(tv: TextView,timestamp: Timestamp?){
     }
 }
 @BindingAdapter("app:getReplyCount")
-fun getReplyCount(tv: TextView,list:List<Reply>){
+fun getReplyCount(tv: TextView,list:List<Reply>?){
+    if(list.isNullOrEmpty()){
+        tv.text="0"
+        return
+    }
     var count = list.size
-    for (reply in list){
+    for (reply in list) {
+        if(!reply.replyToReply.isNullOrEmpty())
         count += reply.replyToReply.size
     }
     tv.text = count.toString()

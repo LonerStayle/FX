@@ -12,6 +12,6 @@ interface RoomDao {
     fun getUser():LiveData<UserData>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun userUpdate(it: UserData)
+    fun userUpdate(user: UserData)
 
 }
