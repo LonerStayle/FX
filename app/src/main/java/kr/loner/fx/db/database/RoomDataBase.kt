@@ -24,18 +24,5 @@ abstract class RoomDataBase : RoomDatabase() {
             }
         }
     }
-//    companion object {
-//        @Volatile
-//        private var INSTANCE: RoomDataBase? = null
-//        fun getInstance(context: Context): RoomDataBase = synchronized(this) {
-//            INSTANCE ?: Room.databaseBuilder(
-//                context,
-//                RoomDataBase::class.java,
-//                "Room_DataBase"
-//            ).fallbackToDestructiveMigration()
-//                .build().also {
-//                    INSTANCE = it
-//                }
-//        }
-//    }
+
 }

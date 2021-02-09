@@ -10,6 +10,6 @@ import kotlinx.parcelize.Parcelize
 data class UserData(
     val idx:Long = 0L,
     val name:String,
-    val image:String,
+    val likeList:List<String> = listOf(),
 ): Parcelable
 

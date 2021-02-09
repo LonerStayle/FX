@@ -3,6 +3,7 @@ package kr.loner.fx.ui.util
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.google.firebase.Timestamp
+import kr.loner.fx.db.entity.Reply
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -12,6 +13,14 @@ fun timeStampConverter(tv: TextView,timestamp: Timestamp?){
     SimpleDateFormat("yyyy년 MM월 DD일 a hh시 mm분", Locale.KOREAN).format(timestamp.toDate()).also {
         tv.text = it
     }
+}
+@BindingAdapter("app:getReplyCount")
+fun getReplyCount(tv: TextView,list:List<Reply>){
+    var count = list.size
+    for (reply in list){
+        count += reply.replyToReply.size
+    }
+    tv.text = count.toString()
 }
 
 //fun Timestamp.timeStampConverter():String {

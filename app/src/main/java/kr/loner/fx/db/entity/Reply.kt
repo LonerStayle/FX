@@ -10,7 +10,7 @@ import kotlinx.parcelize.Parcelize
 data class Reply(
     val idx:String?= null,
     val content:String?= null,
-
+    val replyToReply:List<Reply>? =null,
     @ServerTimestamp
     val createAt:Timestamp? = null
 ):Parcelable

@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import kr.loner.fx.BR
+import kr.loner.fx.db.database.RoomDataBase
+import kr.loner.fx.viewmodel.factory.ViewModelFactory
 
 abstract class BaseFragment<VDB : ViewDataBinding>(
     @LayoutRes val layoutRes: Int,
@@ -27,7 +29,10 @@ abstract class BaseFragment<VDB : ViewDataBinding>(
         lifecycleOwner = this@BaseFragment
         binding = this
         getBinding {
-                setVariable(BR.vm, ViewModelProvider(this@BaseFragment,)[viewModelCls])
+                setVariable(BR.vm, ViewModelProvider(this@BaseFragment,
+                    ViewModelFactory(RoomDataBase.getInstance(requireContext()).itDao)
+                    )[viewModelCls])
+
         }
         setDataBind()
         setClickListener()
@@ -54,3 +59,4 @@ abstract class BaseFragment<VDB : ViewDataBinding>(
     }
 
 }
+

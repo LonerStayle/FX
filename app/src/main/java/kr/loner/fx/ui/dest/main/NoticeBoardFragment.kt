@@ -18,8 +18,9 @@ class NoticeBoardFragment : BaseFragment<FragmentNoticeboardBinding>(
     MainViewModel::class.java
 ) {
     override fun FragmentNoticeboardBinding.setDataBind() {
+        setHasOptionsMenu(true)
         vm!!.getMuckDataList()
-        vm!!.muckDataList.observe(requireActivity(),{
+        vm!!.noticeBoardList.observe(requireActivity(),{
             vpNoticeBoardNotification.adapter = NoticeBoardAdapter(it,NOTIFICATION_ADAPTER )
             rvPostList.adapter = NoticeBoardAdapter(it, LIST_ADAPTER)
         })

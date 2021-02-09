@@ -8,7 +8,6 @@ import kr.loner.fx.db.entity.UserData
 @Dao
 interface RoomDao {
 
-
     @Query("SELECT * FROM UserData WHERE idx = 0")
     fun getUser():LiveData<UserData>
 

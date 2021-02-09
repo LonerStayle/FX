@@ -2,35 +2,41 @@ package kr.loner.fx.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
+
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.launch
 import kr.loner.fx.db.entity.NoticeBoard
 import kr.loner.fx.db.entity.Reply
+import kr.loner.fx.db.entity.UserData
 
-class MainViewModel() : ViewModel() {
+import kr.loner.fx.repository.UserRepository
 
-    private val _muckDataList = MutableLiveData<List<NoticeBoard>>()
-    val muckDataList: LiveData<List<NoticeBoard>>
-        get() = _muckDataList
+class MainViewModel(private val userRepository: UserRepository) : ViewModel() {
 
-    fun getMuckDataList() {
-        val muckReplyList: MutableList<Reply> = mutableListOf()
-        val muckLikeList: List<Long> = mutableListOf()
-        val muckDataList: MutableList<NoticeBoard> = mutableListOf()
 
-        for (i in 0..5) {
-            muckDataList.add(
-                NoticeBoard(
-                    "${i}_key",
-                    "테스트${i}",
-                    "테스트 게시글${i}",
-                    "테스트 내용${i}\t테스트 내용${i}\t테스트 내용${i}\n테스트 내용${i}\t테스트 내용${i}\t",
-                    null,
-                    muckReplyList,
-                    muckLikeList
-                )
-            )
+    private val db = FirebaseFirestore.getInstance()
+
+    val userData: LiveData<UserData>
+        get() = userRepository.getUser()
+
+    private val _noticeBoardList = MutableLiveData<List<NoticeBoard>>()
+    val noticeBoardList: LiveData<List<NoticeBoard>>
+        get() = _noticeBoardList
+
+    fun userDataUpdate(user: UserData) {
+        viewModelScope.launch {
+            userRepository.update(user)
         }
-        _muckDataList.postValue(muckDataList)
     }
 
+    fun getMuckDataList() {
+        db.collection("NoticeBoard").get().addOnSuccessListener {
+            _noticeBoardList.postValue(it.toObjects(NoticeBoard::class.java))
+        }
+    }
+    fun setNoticeBoard(noticeBoard: NoticeBoard){
+        db.collection("NoticeBoard").parent?.set(noticeBoard)
+    }
 }

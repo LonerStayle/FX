@@ -73,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text ="@{ String.valueOf(noticeBoard.replyList.size())}"
+            app:getReplyCount="@{noticeBoard.replyList}"
             android:textColor="@color/colorCommand"
             android:drawableStart="@drawable/ic_baseline_sms_16"
             app:layout_constraintStart_toEndOf="@+id/tv_noticeDetailLikeCount"
