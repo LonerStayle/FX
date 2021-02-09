@@ -31,11 +31,11 @@ class BaseDialog<VDB : ViewDataBinding>(
         }
     }
 
-    fun setWindowLayoutControl(height: Int, width: Int) {
+    fun setWindowLayoutControl(width: Int, height: Int) {
         WindowManager.LayoutParams().let {
             val dp = context.resources.displayMetrics.density
-            it.height = (height * dp).toInt()
-            it.width = (width * dp).toInt()
+            it.height = (width * dp).toInt()
+            it.width = (height * dp).toInt()
             window?.setLayout(it.width,it.height)
         }
     }

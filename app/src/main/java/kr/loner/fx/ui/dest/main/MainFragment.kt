@@ -33,7 +33,7 @@ class MainFragment :
     private fun setUserCreateDialogShow() {
             BaseDialog<DialogUsercreateBinding>(requireContext(), R.layout.dialog_usercreate).apply {
                 setWindowManager(Gravity.NO_GRAVITY, 0.8f, false)
-                setWindowLayoutControl(300,260)
+                setWindowLayoutControl(300,230)
                 setCancelable(false)
                 setCanceledOnTouchOutside(false)
                 show()
