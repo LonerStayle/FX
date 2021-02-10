@@ -10,15 +10,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FX">
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name=".ui.activity.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.NoticeBoardActivity"/>
-        <activity android:name=".ui.activity.GameActivity"/>
+        <activity android:name=".ui.activity.NoticeBoardActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.GameActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
