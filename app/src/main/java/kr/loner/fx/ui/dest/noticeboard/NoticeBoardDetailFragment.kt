@@ -42,7 +42,7 @@ class NoticeBoardDetailFragment : BaseFragment<FragmentNoticeboardDetailBinding>
         ibnLikeSend.setOnClickListener {
             vm!!.userData ?: return@setOnClickListener
             vm!!.sendLike(vm!!.userData!!.name)
-            noticeBoard.likeCountList?.toMutableList()?.add(vm!!.userData!!.name)
+            noticeBoard!!.likeCountList?.toMutableList()?.add(vm!!.userData!!.name)
             toastShort("좋아요 버튼을 눌렀습니다.")
         }
     }

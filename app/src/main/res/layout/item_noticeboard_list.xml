@@ -15,13 +15,13 @@
 
     <ImageView
         android:id="@+id/iv_postUserImage"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="6dp"
         android:src="@drawable/ic_round_person_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/tv_postUploadTime"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tv_postUserName"
@@ -29,32 +29,35 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@{noticeBoard.name}"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_postUserImage"
         app:layout_constraintStart_toEndOf="@+id/iv_postUserImage"
-        app:layout_constraintTop_toTopOf="@+id/iv_postUserImage" />
+        app:layout_constraintTop_toTopOf="@+id/iv_postUserImage"
+        tools:text="유저네임" />
 
     <TextView
         android:id="@+id/tv_postUploadTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="13dp"
+        android:layout_marginBottom="8dp"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/iv_postUserImage"
         app:timeStampConverter="@{noticeBoard.timestamp}"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_postUserName"
-        app:layout_constraintEnd_toEndOf="@+id/tv_postCommentCount"
-        app:layout_constraintTop_toTopOf="@+id/tv_postUserName" />
+        tools:text="2020년00월00일 오후 00시 00분 00초" />
 
     <TextView
         android:id="@+id/tv_postContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:maxHeight="300dp"
         android:maxLines="2"
         android:text="@{noticeBoard.content}"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/iv_postUserImage"
-        app:layout_constraintTop_toBottomOf="@+id/iv_postUserImage" />
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        tools:text="글내용 글내용" />
 
 
 
@@ -66,6 +69,7 @@
         android:maxLines="1"
         android:text="@{String.valueOf(noticeBoard.replyList.size())}"
         android:textColor="@color/colorCommand"
+        tools:text="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_postLikeCount"
         app:drawableStartCompat="@drawable/ic_baseline_sms_16" />
@@ -74,38 +78,38 @@
         android:id="@+id/tv_postLikeCount"
         android:layout_width="30dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="130dp"
         android:layout_marginEnd="7dp"
         android:drawableStart="@drawable/background_like_btn"
         android:maxLines="1"
         android:text="@{String.valueOf(noticeBoard.likeCountList.size())}"
         android:textColor="@color/colorLike"
         app:layout_constraintEnd_toStartOf="@+id/tv_postCommentCount"
-        app:layout_constraintTop_toBottomOf="@+id/tv_postUploadTime" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="0" />
 
     <View
         android:id="@+id/view3"
         android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:layout_marginTop="8dp"
         android:background="#dcdcdc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_postLikeCount" />
+        app:layout_constraintTop_toBottomOf="parent" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:textSize="18sp"
-        android:textColor="#000"
-        android:textStyle="bold"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:text="@{noticeBoard.title}"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_postUserName"
-        app:layout_constraintStart_toEndOf="@+id/iv_postUserImage"
-        app:layout_constraintTop_toTopOf="@+id/tv_postUserName" />
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="글 제목" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
