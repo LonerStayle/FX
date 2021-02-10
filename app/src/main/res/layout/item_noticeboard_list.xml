@@ -15,21 +15,21 @@
 
     <ImageView
         android:id="@+id/iv_postUserImage"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:src="@drawable/ic_round_person_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_round_person_24" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_postUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:text="@{noticeBoard.name}"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_postUserImage"
         app:layout_constraintStart_toEndOf="@+id/iv_postUserImage"
         app:layout_constraintTop_toTopOf="@+id/iv_postUserImage" />
@@ -47,11 +47,12 @@
         android:id="@+id/tv_postContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:textSize="12sp"
         android:maxHeight="300dp"
         android:maxLines="2"
         android:text="@{noticeBoard.content}"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/iv_postUserImage"
         app:layout_constraintTop_toBottomOf="@+id/iv_postUserImage" />
 
@@ -92,6 +93,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_postLikeCount" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:textSize="18sp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:text="@{noticeBoard.title}"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_postUserName"
+        app:layout_constraintStart_toEndOf="@+id/iv_postUserImage"
+        app:layout_constraintTop_toTopOf="@+id/tv_postUserName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

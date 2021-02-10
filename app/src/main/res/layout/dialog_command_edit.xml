@@ -34,7 +34,7 @@
         <EditText
             android:id="@+id/et_noticeBoardCommand"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:layout_marginStart="16dp"
             android:background="@null"
             android:hint="댓글을 입력해주세요"
@@ -46,10 +46,10 @@
 
         <Button
             android:id="@+id/btn_commandEdit"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@drawable/ic_baseline_send_24"
-            app:layout_constraintBottom_toBottomOf="@+id/et_noticeBoardCommand"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/et_noticeBoardCommand" />
     </androidx.constraintlayout.widget.ConstraintLayout>
