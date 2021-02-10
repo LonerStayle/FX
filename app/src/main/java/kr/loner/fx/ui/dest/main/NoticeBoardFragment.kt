@@ -1,22 +1,12 @@
 package kr.loner.fx.ui.dest.main
 
-import android.content.Intent
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentContainer
-import androidx.fragment.app.FragmentContainerView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import kr.loner.fx.R
-import kr.loner.fx.databinding.FragmentMainBinding
 import kr.loner.fx.databinding.FragmentNoticeboardBinding
-import kr.loner.fx.db.entity.NoticeBoard
-import kr.loner.fx.ui.activity.NoticeBoardActivity
 import kr.loner.fx.ui.adapter.NoticeBoardAdapter
 import kr.loner.fx.ui.base.BaseFragment
 import kr.loner.fx.viewmodel.MainViewModel
@@ -26,11 +16,13 @@ class NoticeBoardFragment : BaseFragment<FragmentNoticeboardBinding>(
     MainViewModel::class.java
 ) {
     override fun FragmentNoticeboardBinding.setDataBind() {
+
         setHasOptionsMenu(true)
         vm!!.getNoticeBoardList()
         vm!!.noticeBoardList.observe(requireActivity(), {
-            vpNoticeBoardNotification.adapter = NoticeBoardAdapter(it, NOTIFICATION_ADAPTER)
-            rvPostList.adapter = NoticeBoardAdapter(it, LIST_ADAPTER)
+            val list = it.sortedBy { it.timestamp?.seconds }
+            vpNoticeBoardNotification.adapter = NoticeBoardAdapter(list, NOTIFICATION_ADAPTER)
+            rvPostList.adapter = NoticeBoardAdapter(list, LIST_ADAPTER)
         })
     }
 
@@ -38,6 +30,10 @@ class NoticeBoardFragment : BaseFragment<FragmentNoticeboardBinding>(
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.notice_board_create, menu)
+        (activity as AppCompatActivity?)!!.supportActionBar!!.apply {
+            show()
+            title = "후기 게시판"
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -2,16 +2,19 @@ package kr.loner.fx.db.dao
 
 import androidx.room.*
 import androidx.lifecycle.LiveData
+import kr.loner.fx.db.entity.GameModel
 import kr.loner.fx.db.entity.NoticeBoard
 import kr.loner.fx.db.entity.UserData
 
 @Dao
-interface RoomDao {
+interface UserDao {
 
     @Query("SELECT * FROM UserData WHERE idx = 0")
     fun getUser():LiveData<UserData>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun userUpdate(user: UserData)
+
+
 
 }

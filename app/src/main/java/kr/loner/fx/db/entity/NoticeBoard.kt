@@ -14,5 +14,5 @@ data class NoticeBoard(
     @ServerTimestamp
     val timestamp:Timestamp? = null,
     val replyList:List<Reply>? = null,
-    val likeCountList:List<Long>? = null
+    val likeCountList:List<String>? = null
 ) : Parcelable

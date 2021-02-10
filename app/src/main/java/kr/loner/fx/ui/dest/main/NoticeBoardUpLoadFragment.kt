@@ -24,9 +24,11 @@ class NoticeBoardUpLoadFragment :
         btnBoardUpload.setOnClickListener {
             val title = etUploadTitle.text.toString()
             val content = etUploadContent.text.toString()
+            val randomId = Contents.noticeBoardRandomId
             vm!!.setNoticeBoard(
+                randomId,
                 NoticeBoard(
-                    Contents.noticeBoardRandomId, name,
+                    randomId, name,
                     title, content
                 )
             )

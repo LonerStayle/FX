@@ -39,7 +39,7 @@ class MainViewModel(private val userRepository: UserRepository) : ViewModel() {
             _noticeBoardList.postValue(it.toObjects(NoticeBoard::class.java).toList())
         }
     }
-    fun setNoticeBoard(noticeBoard: NoticeBoard){
-        db.collection("NoticeBoard").document().set(noticeBoard)
+    fun setNoticeBoard(randomId:String,noticeBoard: NoticeBoard){
+        db.collection("NoticeBoard").document(randomId).set(noticeBoard)
     }
 }

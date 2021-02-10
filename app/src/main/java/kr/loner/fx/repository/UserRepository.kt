@@ -2,7 +2,7 @@ package kr.loner.fx.repository
 
 import kr.loner.fx.db.entity.UserData
 import androidx.lifecycle.LiveData
-import kr.loner.fx.db.dao.RoomDao
+import kr.loner.fx.db.dao.UserDao
 
 interface UserDataSource{
     fun getUser(): LiveData<UserData>
@@ -12,12 +12,12 @@ interface UserDataSource{
 }
 
 
-class UserRepository(private val roomDao:RoomDao):UserDataSource {
+class UserRepository(private val userDao:UserDao):UserDataSource {
 
-    override fun getUser(): LiveData<UserData>  = roomDao.getUser()
+    override fun getUser(): LiveData<UserData>  = userDao.getUser()
 
     override fun update(user: UserData) {
-        roomDao.userUpdate(user)
+        userDao.userUpdate(user)
     }
 
 

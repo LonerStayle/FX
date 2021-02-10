@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+            name="visible"
+            type="Boolean" />
+        <variable
+            name="reply"
+            type="kr.loner.fx.db.entity.Reply" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_commandToReplyProfile"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_round_person_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_commandToReplyName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:text="@{reply.writeName}"
+        app:layout_constraintStart_toEndOf="@+id/iv_commandToReplyProfile"
+        app:layout_constraintTop_toTopOf="@+id/iv_commandToReplyProfile" />
+
+    <TextView
+        android:id="@+id/tv_commandToReplyDescribe"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@{reply.content}"
+        app:layout_constraintStart_toStartOf="@+id/iv_commandToReplyProfile"
+        app:layout_constraintTop_toBottomOf="@+id/iv_commandToReplyProfile" />
+
+    <TextView
+        android:id="@+id/tv_commandToReplyTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:timeStampConverter="@{reply.timestamp}"
+        app:layout_constraintStart_toStartOf="@+id/tv_commandToReplyDescribe"
+        app:layout_constraintTop_toBottomOf="@+id/tv_commandToReplyDescribe" />
+
+    <TextView
+        android:id="@+id/tv_commandToReplyLikeCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:drawableStart="@drawable/background_like_btn"
+        android:text="@{String.valueOf(reply.likeCountList.size())}"
+        android:textColor="@color/colorLike"
+        app:layout_constraintStart_toEndOf="@+id/tv_commandToReplyTime"
+        app:layout_constraintTop_toTopOf="@+id/tv_commandToReplyTime" />
+
+    <ImageView
+        android:id="@+id/iv_arrowRight"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:visibility="@{visible ? View.VISIBLE : View.GONE}"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_subdirectory_arrow_right_24" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

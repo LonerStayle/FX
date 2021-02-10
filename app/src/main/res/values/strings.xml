@@ -1,5 +1,21 @@
 <resources>
     <string name="app_name">FX</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="homePageLink">https://www.1livestory.com/</string>
+    <string name="kakaoLink">http://qr.kakao.com/talk/KqHvZqsvTbvHNNxyQLTqR7PpZiQ-</string>
+    <string name="twitterLink">https://twitter.com/FX98424560</string>
+    <string name="instarLink">https://www.instagram.com/newyork135790?utm_source=qr</string>
+    <string name="registerLink">http://triple-stock3.com/?agent=%EA%BD%83%EA%B8%B8%EC%A0%90</string>
+    <string name="email">iminu286@gmail.com</string>
+    <string name="telegramLink">https://t.me/newyork12</string>
+    <string name="tv_gameReady">대기</string>
+    <string name="tv_remember">암기하세요</string>
+    <string name="tv_find">찾기-></string>
+    <string name="tv_answer">정답입니다.</string>
+    <string name="tv_wrongAnswer">틀렸습니다.</string>
+    <string name="tv_currentPage">%d/%d</string>
+    <string name="record_maxRound">설정한 라운드 횟수:%d</string>
+    <string name="record_row">행:%d</string>
+    <string name="record_col">열:%d</string>
+
 </resources>

@@ -1,5 +1,6 @@
 package kr.loner.fx.ui.util
 
+import android.widget.NumberPicker
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.google.firebase.Timestamp
@@ -10,7 +11,7 @@ import java.util.*
 @BindingAdapter("app:timeStampConverter")
 fun timeStampConverter(tv: TextView,timestamp: Timestamp?){
     timestamp?:return
-    SimpleDateFormat("yyyy년 MM월 DD일 a hh시 mm분", Locale.KOREAN).format(timestamp.toDate()).also {
+    SimpleDateFormat("yyyy년 MM월 dd일 a hh시 mm분", Locale.KOREAN).format(timestamp.toDate()).also {
         tv.text = it
     }
 }
@@ -27,6 +28,15 @@ fun getReplyCount(tv: TextView,list:List<Reply>?){
     }
     tv.text = count.toString()
 }
+
+@BindingAdapter("minValue")
+fun minValue(view: NumberPicker, min:Int) {view.minValue = min}
+
+
+@BindingAdapter("maxValue")
+fun maxValue(view: NumberPicker, max:Int) {view.maxValue = max}
+
+
 
 //fun Timestamp.timeStampConverter():String {
 //    return SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초", Locale.KOREAN).format(this.toDate())

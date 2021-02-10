@@ -9,6 +9,8 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import kr.loner.fx.BR
+import kr.loner.fx.db.database.FXDataBase
+import kr.loner.fx.viewmodel.factory.ViewModelFactory
 
 abstract class BaseActivity<VDB : ViewDataBinding>(
     @LayoutRes val layoutId: Int,
@@ -20,7 +22,10 @@ abstract class BaseActivity<VDB : ViewDataBinding>(
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layoutId)
         getBinding {
-            setVariable(BR.vm, ViewModelProvider(this@BaseActivity,)[viewModelCls])
+            setVariable(BR.vm, ViewModelProvider(this@BaseActivity,
+                ViewModelFactory(FXDataBase.getInstance(this@BaseActivity).userDao,
+                FXDataBase.getInstance(this@BaseActivity).gameDao)
+                )[viewModelCls])
         }
         binding.onCreate()
 

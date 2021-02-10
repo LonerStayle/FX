@@ -1,10 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/game"
-    app:startDestination="@id/gameFlowFragment">
+    app:startDestination="@id/gameSettingFragment">
 
     <fragment
         android:id="@+id/gameFlowFragment"
         android:name="kr.loner.fx.ui.dest.game.GameFlowFragment"
-        android:label="GameFlowFragment" />
+        android:label="GameFlowFragment" >
+        <argument
+            android:name="maxRound"
+            android:defaultValue="3"
+            app:argType="integer" />
+        <argument
+            android:name="col"
+            android:defaultValue="3"
+            app:argType="integer" />
+        <argument
+            android:name="row"
+            android:defaultValue="3"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_gameFlowFragment_to_gameRecordFragment"
+            app:destination="@id/gameRecordFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/gameSettingFragment"
+        android:name="kr.loner.fx.ui.dest.game.GameSettingFragment"
+        android:label="GameSettingFragment" >
+        <action
+            android:id="@+id/action_gameSettingFragment_to_gameFlowFragment"
+            app:destination="@id/gameFlowFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameRecordFragment"
+        android:name="kr.loner.fx.ui.dest.game.GameRecordFragment"
+        android:label="GameRecordFragment" >
+        <argument android:name="maxRound"
+            app:argType="integer"
+            android:defaultValue="3" />
+        <argument
+            android:name="col"
+            app:argType="integer"
+            android:defaultValue="3" />
+        <argument
+            android:name="row"
+            app:argType="integer"
+            android:defaultValue="3" />
+    </fragment>
 </navigation>

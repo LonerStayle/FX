@@ -108,25 +108,25 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <ImageView
-                android:id="@+id/iv_noticeDetailCommandDialogOn"
+            <ImageButton
+                android:id="@+id/ibn_commandDialogOn"
                 android:layout_width="42dp"
                 android:layout_height="42dp"
                 android:layout_marginStart="20dp"
                 android:src="@drawable/ic_command"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/iv_noticeDetailLikeSend"
+                app:layout_constraintStart_toEndOf="@+id/ibn_likeSend"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/iv_noticeDetailLikeSend"
+            <ImageButton
+                android:id="@+id/ibn_likeSend"
                 android:layout_width="42dp"
                 android:layout_height="42dp"
                 android:layout_marginEnd="20dp"
                 android:src="@drawable/ic_like"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/iv_noticeDetailCommandDialogOn"
+                app:layout_constraintEnd_toStartOf="@+id/ibn_commandDialogOn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

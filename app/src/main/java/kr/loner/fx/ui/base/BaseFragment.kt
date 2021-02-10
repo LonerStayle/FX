@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import kr.loner.fx.BR
-import kr.loner.fx.db.database.RoomDataBase
+import kr.loner.fx.db.database.FXDataBase
 import kr.loner.fx.viewmodel.factory.ViewModelFactory
 
 abstract class BaseFragment<VDB : ViewDataBinding>(
@@ -29,10 +29,15 @@ abstract class BaseFragment<VDB : ViewDataBinding>(
         lifecycleOwner = this@BaseFragment
         binding = this
         getBinding {
-                setVariable(BR.vm, ViewModelProvider(this@BaseFragment,
-                    ViewModelFactory(RoomDataBase.getInstance(requireContext()).userDao)
-                    )[viewModelCls])
-
+            setVariable(
+                BR.vm, ViewModelProvider(
+                    this@BaseFragment,
+                    ViewModelFactory(
+                        FXDataBase.getInstance(requireContext()).userDao,
+                        FXDataBase.getInstance(requireContext()).gameDao
+                    )
+                )[viewModelCls]
+            )
         }
         setDataBind()
         setClickListener()
@@ -45,17 +50,20 @@ abstract class BaseFragment<VDB : ViewDataBinding>(
 
     abstract fun VDB.setDataBind()
     open fun VDB.setClickListener() = Unit
-    protected fun VDB.toastShort(message:String){
-        Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
+    protected fun toastShort(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
-    protected fun VDB.toastShort(message:Int){
-        Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
+
+    protected fun toastShort(message: Int) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
-    protected fun VDB.toastLong(message:Int){
-        Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
+
+    protected fun toastLong(message: Int) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
-    protected fun VDB.toastLong(message:String){
-        Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
+
+    protected fun toastLong(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
 }

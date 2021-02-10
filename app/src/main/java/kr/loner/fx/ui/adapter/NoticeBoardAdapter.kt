@@ -12,13 +12,14 @@ import kr.loner.fx.R
 import kr.loner.fx.databinding.ItemNoticeboardListBinding
 import kr.loner.fx.databinding.ItemNoticeboardNotificationListBinding
 import kr.loner.fx.db.entity.NoticeBoard
+import kr.loner.fx.db.entity.UserData
 import kr.loner.fx.ui.activity.NoticeBoardActivity
 import kr.loner.fx.ui.dest.main.NoticeBoardFragment.Companion.LIST_ADAPTER
 
 
 class NoticeBoardAdapter(
     var noticeBoardtList: List<NoticeBoard> = listOf(),
-    var adapterMode: Int
+    var adapterMode: Int,
 ) : RecyclerView.Adapter<NoticeBoardAdapter.ViewHolder>() {
 
 
@@ -33,7 +34,7 @@ class NoticeBoardAdapter(
 
             binding?.root?.setOnClickListener { view ->
                 Intent(view.context, NoticeBoardActivity::class.java).also {
-                    it.putExtra("noticeBoard", noticeBoardtList[adapterPosition])
+                    it.putExtra("noticeBoardId", noticeBoardtList[adapterPosition].idx)
                     view.context.startActivity(it)
                 }
             }

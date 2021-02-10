@@ -1,8 +1,10 @@
 package kr.loner.fx.ui.dest.main
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.Gravity
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import kr.loner.fx.R
@@ -15,7 +17,10 @@ import kr.loner.fx.viewmodel.MainViewModel
 
 class MainFragment :
     BaseFragment<FragmentMainBinding>(R.layout.fragment_main, MainViewModel::class.java) {
+
+    @SuppressLint("RestrictedApi")
     override fun FragmentMainBinding.setDataBind() {
+
         vm!!.userData.observe(viewLifecycleOwner, {
             it ?: setUserCreateDialogShow()
         })
@@ -33,7 +38,7 @@ class MainFragment :
     private fun setUserCreateDialogShow() {
             BaseDialog<DialogUsercreateBinding>(requireContext(), R.layout.dialog_usercreate).apply {
                 setWindowManager(Gravity.NO_GRAVITY, 0.8f, false)
-                setWindowLayoutControl(300,230)
+                setWindowLayoutControl(300,240)
                 setCancelable(false)
                 setCanceledOnTouchOutside(false)
                 show()
