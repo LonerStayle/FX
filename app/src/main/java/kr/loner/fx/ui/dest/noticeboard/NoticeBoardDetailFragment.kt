@@ -42,6 +42,8 @@ class NoticeBoardDetailFragment : BaseFragment<FragmentNoticeboardDetailBinding>
         ibnLikeSend.setOnClickListener {
             vm!!.userData ?: return@setOnClickListener
             vm!!.sendLike(vm!!.userData!!.name)
+            noticeBoard.likeCountList?.toMutableList()?.add(vm!!.userData!!.name)
+            toastShort("좋아요 버튼을 눌렀습니다.")
         }
     }
 
@@ -54,7 +56,7 @@ class NoticeBoardDetailFragment : BaseFragment<FragmentNoticeboardDetailBinding>
         vm!!.noticedBoard.observe(viewLifecycleOwner, { noticeItem ->
             noticeBoard = noticeItem
             noticeBoard?.replyList?:return@observe
-            rvCommandList.adapter = NoticeBoardDetailCommandAdapter(noticeBoard!!.replyList!!) {
+            rvCommandList.adapter = NoticeBoardDetailCommandAdapter(noticeBoard!!.replyList!!.values.toList()) {
                 vm!!.selectReplyIdx = it
                 dialogCommandEditShow(vm!!.userData!!, true)
             }
@@ -70,15 +72,16 @@ class NoticeBoardDetailFragment : BaseFragment<FragmentNoticeboardDetailBinding>
         dialog.setWindowManager(Gravity.BOTTOM, 0.3f, true)
 
         dialog.binding.btnCommandEdit.setOnClickListener {
-            val reply = Reply(
-                Contents.replyRandomId, user.name,
-                dialog.binding.etNoticeBoardCommand.text.toString(),
-                listOf(), listOf(), Timestamp.now()
-            )
-            if (!toReplyMode)
-                vm!!.setReply(reply)
-            else
-                vm!!.setReplyToReply(reply)
+            toastShort("구현 대기중입니다.")
+//            val reply = Reply(
+//                Contents.replyRandomId, user.name,
+//                dialog.binding.etNoticeBoardCommand.text.toString(),
+//                listOf(), listOf(), Timestamp.now()
+//            )
+//            if (!toReplyMode)
+//                vm!!.setReply(reply)
+//            else
+//                vm!!.setReplyToReply(reply)
         }
         dialog.show()
     }

@@ -22,13 +22,13 @@ MainViewModel::class.java) {
         btnGoToTheHomePage.setOnClickListener { goToTheWeb(getString(R.string.homePageLink)) }
         btnInstarShare.setOnClickListener {goToTheWeb(getString(R.string.instarLink))  }
         btnKakaoShare.setOnClickListener {goToTheWeb(getString(R.string.kakaoLink))  }
-        btnTelegramShare.setOnClickListener {goToTheWeb(getString(R.string.mail))  }
+        btnTelegramShare.setOnClickListener {goToTheWeb(getString(R.string.telegramLink))  }
         btnTwitterShere.setOnClickListener {goToTheWeb(getString(R.string.twitterLink))  }
         btnRegister.setOnClickListener {goToTheWeb(getString(R.string.registerLink))  }
 
 
     }
-    fun goToTheWeb(webSite:String){
+    private fun goToTheWeb(webSite:String){
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webSite)))
     }
 

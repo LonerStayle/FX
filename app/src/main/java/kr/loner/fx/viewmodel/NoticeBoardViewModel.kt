@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kr.loner.fx.db.entity.NoticeBoard
@@ -28,9 +27,9 @@ class NoticeBoardViewModel() : ViewModel() {
 
     fun getNoticeBoard() {
         viewModelScope.launch(Dispatchers.IO) {
-
             db.collection("NoticeBoard").document(noticeBoardIdx!!).get()
                 .addOnSuccessListener {
+                    it?:return@addOnSuccessListener
                     _noticedBoard.postValue(it.toObject(NoticeBoard::class.java))
                 }
         }

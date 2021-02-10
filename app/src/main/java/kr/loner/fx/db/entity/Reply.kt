@@ -1,7 +1,7 @@
 package kr.loner.fx.db.entity
 
 import android.os.Parcelable
-import androidx.room.TypeConverters
+
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.ServerTimestamp
 import kotlinx.parcelize.Parcelize
