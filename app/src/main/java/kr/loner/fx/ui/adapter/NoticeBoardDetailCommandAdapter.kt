@@ -1,5 +1,6 @@
 package kr.loner.fx.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,15 +10,21 @@ import kr.loner.fx.R
 import kr.loner.fx.databinding.ItemNoticeboardDetailCommandBinding
 import kr.loner.fx.db.entity.Reply
 
-class NoticeBoardDetailCommandAdapter(var replyList: List<Reply> = listOf(), val clickEvent:(String)->Unit ) :
+class NoticeBoardDetailCommandAdapter(val clickEvent: (Reply) -> Unit) :
     RecyclerView.Adapter<NoticeBoardDetailCommandAdapter.ViewHolder>() {
+    var replyList: List<Reply> = listOf()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val binding = DataBindingUtil.bind<ItemNoticeboardDetailCommandBinding>(v)
 
         init {
             itemView.setOnClickListener {
-                clickEvent(replyList[adapterPosition].idx!!)
+                val reply = replyList[adapterPosition]
+                clickEvent(reply)
             }
         }
     }
@@ -34,6 +41,13 @@ class NoticeBoardDetailCommandAdapter(var replyList: List<Reply> = listOf(), val
 
         holder.binding?.apply {
             reply = replyList[position]
+            reply!!.replyToReply?: return@apply
+            rvToReply.adapter = NoticeBoardDetailCommandToReplyAdapter {reply->
+                clickEvent(reply)
+            }.apply {
+                replyList = reply!!.replyToReply?.values?.toList()!!
+            }
+
         }
     }
 }

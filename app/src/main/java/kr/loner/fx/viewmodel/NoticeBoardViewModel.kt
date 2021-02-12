@@ -1,13 +1,12 @@
 package kr.loner.fx.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kr.loner.fx.db.entity.NoticeBoard
@@ -18,7 +17,7 @@ class NoticeBoardViewModel() : ViewModel() {
 
     var noticeBoardIdx: String? = null
     var userData: UserData? = null
-    var selectReplyIdx: String? = null
+    var selectReply:Reply? = null
     private val db = FirebaseFirestore.getInstance()
 
     private val _noticedBoard = MutableLiveData<NoticeBoard>()
@@ -29,7 +28,7 @@ class NoticeBoardViewModel() : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             db.collection("NoticeBoard").document(noticeBoardIdx!!).get()
                 .addOnSuccessListener {
-                    it?:return@addOnSuccessListener
+                    it ?: return@addOnSuccessListener
                     _noticedBoard.postValue(it.toObject(NoticeBoard::class.java))
                 }
         }
@@ -38,16 +37,30 @@ class NoticeBoardViewModel() : ViewModel() {
     fun setReplyToReply(reply: Reply) {
         viewModelScope.launch(Dispatchers.IO) {
 
-            val field = FieldPath.of("replyList.${selectReplyIdx}.replyToReply")
+            val rootMap = mutableMapOf<String, Any>()
+            val replyToReplyListMap  = mutableMapOf<String,Any>()
+            val replyListMap = mutableMapOf<String, Map<String, Any>>()
+            val replyMap = mutableMapOf<String, Reply>()
+
+            replyMap[reply.idx!!] = reply
+            replyToReplyListMap["replyToReply"] = replyMap
+            replyListMap[reply.parentIdx!!] = replyToReplyListMap
+            rootMap["replyList"] = replyListMap
+
             db.collection("NoticeBoard").document(noticeBoardIdx!!)
-                .update(field,reply)
+                .set(rootMap.toMap(), SetOptions.merge())
         }
     }
 
     fun setReply(reply: Reply) {
         viewModelScope.launch(Dispatchers.IO) {
-            val field = FieldPath.of("replyList")
-            db.collection("NoticeBoard").document(noticeBoardIdx!!).update(field, reply)
+            val map = mutableMapOf<String, Map<String, Reply>>()
+            val replyMap = mutableMapOf<String, Reply>()
+            replyMap[reply.idx!!] = reply
+            map["replyList"] = replyMap
+
+            db.collection("NoticeBoard").document(noticeBoardIdx!!)
+                .set(map.toMap(), SetOptions.merge())
         }
     }
 

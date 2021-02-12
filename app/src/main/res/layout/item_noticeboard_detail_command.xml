@@ -8,79 +8,81 @@
             type="kr.loner.fx.db.entity.Reply" />
 
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/iv_commandProfile"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/ic_round_person_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_commandName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:text="@{reply.writeName}"
-        app:layout_constraintStart_toEndOf="@+id/iv_commandProfile"
-        app:layout_constraintTop_toTopOf="@+id/iv_commandProfile" />
-
-    <TextView
-        android:id="@+id/tv_commandDescribe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@{reply.content}"
-        app:layout_constraintStart_toStartOf="@+id/iv_commandProfile"
-        app:layout_constraintTop_toBottomOf="@+id/iv_commandProfile" />
-
-    <TextView
-        android:id="@+id/tv_commandTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        app:timeStampConverter="@{reply.timestamp}"
-        app:layout_constraintStart_toStartOf="@+id/tv_commandDescribe"
-        app:layout_constraintTop_toBottomOf="@+id/tv_commandDescribe" />
-
-    <TextView
-        android:id="@+id/tv_commandLikeCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:drawableStart="@drawable/background_like_btn"
-        android:textColor="@color/colorLike"
-        app:layout_constraintStart_toEndOf="@+id/tv_commandTime"
-        app:layout_constraintTop_toTopOf="@+id/tv_commandTime"
-        android:text="@{String.valueOf(reply.likeCountList.size())}" />
-
-    <TextView
-        android:id="@+id/tv_commandreplayCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:drawableStart="@drawable/ic_baseline_sms_16"
-        android:textColor="@color/colorCommand"
-        app:layout_constraintStart_toEndOf="@+id/tv_commandLikeCount"
-        app:layout_constraintTop_toTopOf="@+id/tv_commandTime"
-        android:text="@{String.valueOf(reply.replyToReply.size())}" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_toReply"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tv_commandTime"
-        app:layout_constraintTop_toBottomOf="@+id/tv_commandTime" />
+        android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/iv_commandProfile"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_round_person_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_commandName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="@{reply.writeName}"
+            app:layout_constraintStart_toEndOf="@+id/iv_commandProfile"
+            app:layout_constraintTop_toTopOf="@+id/iv_commandProfile" />
+
+        <TextView
+            android:id="@+id/tv_commandDescribe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@{reply.content}"
+            app:layout_constraintStart_toStartOf="@+id/iv_commandProfile"
+            app:layout_constraintTop_toBottomOf="@+id/iv_commandProfile" />
+
+        <TextView
+            android:id="@+id/tv_commandTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_commandDescribe"
+            app:layout_constraintTop_toBottomOf="@+id/tv_commandDescribe"
+            app:timeStampConverter="@{reply.timestamp}" />
+
+        <TextView
+            android:id="@+id/tv_commandLikeCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:drawableStart="@drawable/background_like_btn"
+            android:text="@{String.valueOf(reply.likeCountList.size())}"
+            android:textColor="@color/colorLike"
+            app:layout_constraintStart_toEndOf="@+id/tv_commandTime"
+            app:layout_constraintTop_toTopOf="@+id/tv_commandTime" />
+
+        <TextView
+            android:id="@+id/tv_commandreplayCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:drawableStart="@drawable/ic_baseline_sms_16"
+            android:text="@{String.valueOf(reply.replyToReply.size())}"
+            android:textColor="@color/colorCommand"
+            app:layout_constraintStart_toEndOf="@+id/tv_commandLikeCount"
+            app:layout_constraintTop_toTopOf="@+id/tv_commandTime" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_toReply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_commandTime"
+            app:layout_constraintTop_toBottomOf="@+id/tv_commandTime" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -2,9 +2,6 @@ package kr.loner.fx.ui.dest.noticeboard
 
 import android.util.Log
 import android.view.Gravity
-import android.view.ViewGroup
-import android.view.WindowManager
-import android.widget.LinearLayout
 import androidx.fragment.app.viewModels
 import com.google.firebase.Timestamp
 import kr.loner.fx.R
@@ -55,33 +52,52 @@ class NoticeBoardDetailFragment : BaseFragment<FragmentNoticeboardDetailBinding>
 
         vm!!.noticedBoard.observe(viewLifecycleOwner, { noticeItem ->
             noticeBoard = noticeItem
-            noticeBoard?.replyList?:return@observe
-            rvCommandList.adapter = NoticeBoardDetailCommandAdapter(noticeBoard!!.replyList!!.values.toList()) {
-                vm!!.selectReplyIdx = it
-                dialogCommandEditShow(vm!!.userData!!, true)
+            noticeBoard?.replyList ?: return@observe
+
+            rvCommandList.adapter = NoticeBoardDetailCommandAdapter { reply ->
+
+                    vm!!.selectReply = reply
+
+                dialogCommandEditShow(vm!!.userData!!, true )
+            }.apply {
+                replyList = noticeItem.replyList?.values!!.toList()
             }
         })
     }
 
     private fun FragmentNoticeboardDetailBinding.dialogCommandEditShow(
         user: UserData,
-        toReplyMode: Boolean
+        toReplyMode: Boolean,
     ) {
         val dialog =
             BaseDialog<DialogCommandEditBinding>(requireContext(), R.layout.dialog_command_edit)
         dialog.setWindowManager(Gravity.BOTTOM, 0.3f, true)
 
         dialog.binding.btnCommandEdit.setOnClickListener {
-            toastShort("구현 대기중입니다.")
-//            val reply = Reply(
-//                Contents.replyRandomId, user.name,
-//                dialog.binding.etNoticeBoardCommand.text.toString(),
-//                listOf(), listOf(), Timestamp.now()
-//            )
-//            if (!toReplyMode)
-//                vm!!.setReply(reply)
-//            else
-//                vm!!.setReplyToReply(reply)
+
+
+            val newReply = Reply(
+                idx = Contents.replyRandomId(),
+                parentIdx = vm!!.selectReply?.idx?:"0000",
+                writeName = user.name,
+                content = dialog.binding.etNoticeBoardCommand.text.toString(),
+                replyToReply = hashMapOf(),
+                likeCountList = listOf(),
+                timestamp = Timestamp.now()
+            )
+
+            if (!toReplyMode)
+                vm!!.setReply(newReply)
+            else {
+                //댓글의 대댓글을 클릭한 상태
+                if(noticeBoard!!.replyList?.values?.find { it.idx == vm!!.selectReply?.idx } == null) {
+                    newReply.parentIdx = vm!!.selectReply?.parentIdx
+
+                }
+                vm!!.setReplyToReply(newReply)
+            }
+            toastShort("댓글이 업로드 되었습니다.")
+            dialog.dismiss()
         }
         dialog.show()
     }

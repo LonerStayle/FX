@@ -10,10 +10,11 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Reply(
     val idx:String?= null,
+    var parentIdx:String?="0000",
     val writeName:String? = null,
     val content:String?= null,
-    val replyToReply:List<Reply>? =null,
-    val likeCountList:List<Long>?=null,
+    val replyToReply:HashMap<String,Reply>? =null,
+    val likeCountList:List<Long> = listOf(0L),
     @ServerTimestamp
     val timestamp:Timestamp? = null
 ):Parcelable

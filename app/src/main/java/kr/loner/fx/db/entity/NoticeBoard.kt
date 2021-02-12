@@ -13,6 +13,6 @@ data class NoticeBoard(
     val content:String? = null,
     @ServerTimestamp
     val timestamp:Timestamp? = null,
-    val replyList:HashMap<String,Reply>? = null,
+    val replyList:HashMap<String,Reply>? = hashMapOf<String,Reply>(),
     val likeCountList:List<String>? = null
 ) : Parcelable
