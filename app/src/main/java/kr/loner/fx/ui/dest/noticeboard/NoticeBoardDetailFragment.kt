@@ -14,6 +14,7 @@ import kr.loner.fx.ui.adapter.NoticeBoardDetailCommandAdapter
 import kr.loner.fx.ui.base.BaseDialog
 import kr.loner.fx.ui.base.BaseFragment
 import kr.loner.fx.ui.util.Contents
+import kr.loner.fx.ui.util.animationRemove
 import kr.loner.fx.viewmodel.MainViewModel
 import kr.loner.fx.viewmodel.NoticeBoardViewModel
 import kr.loner.fx.viewmodel.factory.ViewModelFactory
@@ -40,11 +41,11 @@ class NoticeBoardDetailFragment : BaseFragment<FragmentNoticeboardDetailBinding>
             vm!!.userData ?: return@setOnClickListener
 
             if(noticeBoard!!.likeCountList?.contains(vm!!.userData!!.name) == false ) {
-                vm!!.sendLike(vm!!.userData!!.name)
-                noticeBoard!!.likeCountList?.toMutableList()?.add(vm!!.userData!!.name)
+                vm!!.sendLike(vm!!.userData!!.name!!)
+                noticeBoard!!.likeCountList?.toMutableList()?.add(vm!!.userData!!.name!!)
                 toastShort("좋아요 버튼을 눌렀습니다.")
             }else {
-                vm!!.deleteLike(vm!!.userData!!.name)
+                vm!!.deleteLike(vm!!.userData!!.name!!)
                 noticeBoard!!.likeCountList?.toMutableList()?.remove(vm!!.userData!!.name)
                 toastShort("좋아요를 취소했습니다.")
             }
@@ -61,6 +62,7 @@ class NoticeBoardDetailFragment : BaseFragment<FragmentNoticeboardDetailBinding>
             noticeBoard = noticeItem
             noticeBoard?.replyList ?: return@observe
 
+            rvCommandList.animationRemove()
             rvCommandList.adapter = NoticeBoardDetailCommandAdapter { reply ->
 
                     vm!!.selectReply = reply

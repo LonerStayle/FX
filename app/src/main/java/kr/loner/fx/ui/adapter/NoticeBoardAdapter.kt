@@ -70,5 +70,9 @@ class NoticeBoardAdapter(
 
     }
 
+    override fun getItemId(position: Int): Long {
+        return noticeBoardtList[position].idx!!.toLong()
+    }
+
 
 }

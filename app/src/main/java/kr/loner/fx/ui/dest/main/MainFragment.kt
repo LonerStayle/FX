@@ -21,11 +21,10 @@ class MainFragment :
     @SuppressLint("RestrictedApi")
     override fun FragmentMainBinding.setDataBind() {
 
-        vm!!.userData.observe(viewLifecycleOwner, {
-            it ?: setUserCreateDialogShow()
+        vm!!.userData.observe(viewLifecycleOwner, {user->
+            user ?: setUserCreateDialogShow()
         })
         setBottomNavi()
-
     }
 
     private fun setBottomNavi() {
@@ -36,28 +35,33 @@ class MainFragment :
     }
 
     private fun setUserCreateDialogShow() {
-            BaseDialog<DialogUsercreateBinding>(requireContext(), R.layout.dialog_usercreate).apply {
-                setWindowManager(Gravity.NO_GRAVITY, 0.8f, false)
-                setWindowLayoutControl(300,240)
-                setCancelable(false)
-                setCanceledOnTouchOutside(false)
-                show()
-                binding.also { bind ->
-                    bind.tvAppExit.setOnClickListener { requireActivity().finish() }
-                    bind.tvUserCreate.setOnClickListener {
-                        val user = UserData(name = bind.etUserName.text.toString() )
-                        if(user.name.length <2)
-                            toastShort("이름은 최소 2글자 이상이여야 합니다.")
-                        else
-                       this@MainFragment.binding.vm!!.apply {
-                           userNameCheck(user){ userDataInsert(user) }
-                       }
-                        this.dismiss()
+        val dialog = BaseDialog<DialogUsercreateBinding>(
+            requireContext(),
+            R.layout.dialog_usercreate
+        ).apply {
+            setWindowManager(Gravity.NO_GRAVITY, 0.8f, false)
+            setWindowLayoutControl(300, 240)
+            setCancelable(false)
+            setCanceledOnTouchOutside(false)
+            show()
+        }
+
+        dialog.binding.also { dialogBind ->
+            dialogBind.tvAppExit.setOnClickListener { requireActivity().finish() }
+            dialogBind.tvUserCreate.setOnClickListener {
+                val user = UserData(name = dialogBind.etUserName.text.toString())
+                if (user.name!!.length < 2) {
+                    toastShort("이름은 최소 2글자 이상이여야 합니다.")
+                    return@setOnClickListener
+                } else
+                    binding.vm!!.apply {
+                        userNameCheck(
+                            user,
+                            { userDataInsert(user);dialog.dismiss();toastShort("등록 완료") }) {
+                            toastShort("이미 존재하는 아이디 입니다.")
+                        }
                     }
-                }
             }
-
-
-
+        }
     }
 }

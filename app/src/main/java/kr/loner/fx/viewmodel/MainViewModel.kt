@@ -1,18 +1,14 @@
 package kr.loner.fx.viewmodel
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.viewModelScope
-
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import kr.loner.fx.db.entity.NoticeBoard
-import kr.loner.fx.db.entity.Reply
 import kr.loner.fx.db.entity.UserData
-
 import kr.loner.fx.repository.UserRepository
 
 class MainViewModel(private val userRepository: UserRepository) : ViewModel() {
@@ -28,27 +24,33 @@ class MainViewModel(private val userRepository: UserRepository) : ViewModel() {
         get() = _noticeBoardList
 
 
-    fun userNameCheck(user: UserData,isSuccess:(UserData)->Unit) {
+    fun userNameCheck(user: UserData, isSuccess: (UserData) -> Unit, isFelid: () -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             db.collection("User").whereEqualTo("name", user.name).get()
-                .addOnCompleteListener {
-                    if (it.isSuccessful) {
+                .addOnSuccessListener {
+                    if (it.size() == 0)
                         isSuccess(user)
-                    }
+                    else
+                        isFelid()
                 }
         }
     }
 
     fun userDataInsert(user: UserData) {
         viewModelScope.launch(Dispatchers.IO) {
-            db.collection("User").document(user.name).set(user.name)
-            userRepository.update(user)
+            val updateMap: MutableMap<String, Any> = HashMap()
+            updateMap["name"] = user.name!!
+            db.collection("User").document("name").set(updateMap).addOnSuccessListener {
+                viewModelScope.launch(Dispatchers.IO) {
+                    userRepository.update(user)
+                }
+            }
         }
     }
 
     fun getNoticeBoardList() {
-        db.collection("NoticeBoard").get().addOnSuccessListener {
-            _noticeBoardList.postValue(it.toObjects(NoticeBoard::class.java).toList())
+        db.collection("NoticeBoard").addSnapshotListener { value, _ ->
+            _noticeBoardList.postValue(value?.toObjects(NoticeBoard::class.java)?.toList())
         }
     }
 

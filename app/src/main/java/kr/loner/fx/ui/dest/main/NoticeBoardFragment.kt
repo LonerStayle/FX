@@ -5,11 +5,15 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.RecyclerView.ItemAnimator
+import androidx.recyclerview.widget.SimpleItemAnimator
 import kr.loner.fx.R
 import kr.loner.fx.databinding.FragmentNoticeboardBinding
 import kr.loner.fx.ui.adapter.NoticeBoardAdapter
 import kr.loner.fx.ui.base.BaseFragment
+import kr.loner.fx.ui.util.animationRemove
 import kr.loner.fx.viewmodel.MainViewModel
+
 
 class NoticeBoardFragment : BaseFragment<FragmentNoticeboardBinding>(
     R.layout.fragment_noticeboard,
@@ -17,9 +21,12 @@ class NoticeBoardFragment : BaseFragment<FragmentNoticeboardBinding>(
 ) {
     override fun FragmentNoticeboardBinding.setDataBind() {
 
+
+
         setHasOptionsMenu(true)
         vm!!.getNoticeBoardList()
         vm!!.noticeBoardList.observe(requireActivity(), {
+            rvPostList.animationRemove()
             val list = it.sortedBy { it.timestamp?.seconds }
             vpNoticeBoardNotification.adapter = NoticeBoardAdapter(list, NOTIFICATION_ADAPTER)
             rvPostList.adapter = NoticeBoardAdapter(list, LIST_ADAPTER)
@@ -38,7 +45,7 @@ class NoticeBoardFragment : BaseFragment<FragmentNoticeboardBinding>(
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_goToTheNoticeBoardUpload)
-            Navigation.findNavController(requireActivity(),R.id.nav_host_fragment_container_start).
+            Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_container_start).
             navigate(R.id.action_mainFragment_to_noticeBoardUpLoadFragment)
 
         return super.onOptionsItemSelected(item)

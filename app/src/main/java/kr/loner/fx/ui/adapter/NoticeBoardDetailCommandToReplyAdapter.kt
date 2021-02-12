@@ -17,6 +17,7 @@ class NoticeBoardDetailCommandToReplyAdapter(
         set(value) {
             field = value
             notifyDataSetChanged()
+
         }
     inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val binding = DataBindingUtil.bind<ItemNoticeboardDetailCommandToReplyBinding>(v)

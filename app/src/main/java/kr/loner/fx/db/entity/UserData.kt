@@ -9,7 +9,7 @@ import kotlinx.parcelize.Parcelize
 data class UserData(
     @PrimaryKey
     val idx:Long = 0L,
-    val name:String,
+    val name:String? = null,
     @TypeConverters(UserDataLikeListConverter::class)
     val likeList:List<String> = listOf(),
 ): Parcelable

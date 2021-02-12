@@ -16,7 +16,7 @@ class NoticeBoardUpLoadFragment :
 
     override fun FragmentNoticeboardUploadBinding.setDataBind() {
         vm!!.userData.observe(viewLifecycleOwner,{
-            setUploadClickEvent(it.name)
+            setUploadClickEvent(it.name!!)
         })
     }
 
