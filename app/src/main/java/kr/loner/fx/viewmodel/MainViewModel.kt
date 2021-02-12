@@ -28,8 +28,20 @@ class MainViewModel(private val userRepository: UserRepository) : ViewModel() {
         get() = _noticeBoardList
 
 
-    fun userDataUpdate(user: UserData) {
+    fun userNameCheck(user: UserData,isSuccess:(UserData)->Unit) {
         viewModelScope.launch(Dispatchers.IO) {
+            db.collection("User").whereEqualTo("name", user.name).get()
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        isSuccess(user)
+                    }
+                }
+        }
+    }
+
+    fun userDataInsert(user: UserData) {
+        viewModelScope.launch(Dispatchers.IO) {
+            db.collection("User").document(user.name).set(user.name)
             userRepository.update(user)
         }
     }
@@ -39,7 +51,10 @@ class MainViewModel(private val userRepository: UserRepository) : ViewModel() {
             _noticeBoardList.postValue(it.toObjects(NoticeBoard::class.java).toList())
         }
     }
-    fun setNoticeBoard(randomId:String,noticeBoard: NoticeBoard){
+
+    fun setNoticeBoard(randomId: String, noticeBoard: NoticeBoard) {
         db.collection("NoticeBoard").document(randomId).set(noticeBoard)
     }
+
+
 }

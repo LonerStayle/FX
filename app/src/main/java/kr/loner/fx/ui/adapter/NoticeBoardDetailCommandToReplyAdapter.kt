@@ -43,4 +43,7 @@ class NoticeBoardDetailCommandToReplyAdapter(
             reply = replyList[position]
         }
     }
+    override fun getItemId(position: Int): Long {
+        return replyList[position].idx!!.toLong()
+    }
 }

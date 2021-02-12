@@ -17,7 +17,7 @@ class NoticeBoardViewModel() : ViewModel() {
 
     var noticeBoardIdx: String? = null
     var userData: UserData? = null
-    var selectReply:Reply? = null
+    var selectReply: Reply? = null
     private val db = FirebaseFirestore.getInstance()
 
     private val _noticedBoard = MutableLiveData<NoticeBoard>()
@@ -26,10 +26,10 @@ class NoticeBoardViewModel() : ViewModel() {
 
     fun getNoticeBoard() {
         viewModelScope.launch(Dispatchers.IO) {
-            db.collection("NoticeBoard").document(noticeBoardIdx!!).get()
-                .addOnSuccessListener {
-                    it ?: return@addOnSuccessListener
-                    _noticedBoard.postValue(it.toObject(NoticeBoard::class.java))
+            db.collection("NoticeBoard").document(noticeBoardIdx!!).
+                addSnapshotListener { value, _ ->
+                    value ?: return@addSnapshotListener
+                    _noticedBoard.postValue(value.toObject(NoticeBoard::class.java))
                 }
         }
     }
@@ -38,7 +38,7 @@ class NoticeBoardViewModel() : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
 
             val rootMap = mutableMapOf<String, Any>()
-            val replyToReplyListMap  = mutableMapOf<String,Any>()
+            val replyToReplyListMap = mutableMapOf<String, Any>()
             val replyListMap = mutableMapOf<String, Map<String, Any>>()
             val replyMap = mutableMapOf<String, Reply>()
 
@@ -61,6 +61,7 @@ class NoticeBoardViewModel() : ViewModel() {
 
             db.collection("NoticeBoard").document(noticeBoardIdx!!)
                 .set(map.toMap(), SetOptions.merge())
+
         }
     }
 
@@ -68,6 +69,12 @@ class NoticeBoardViewModel() : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             db.collection("NoticeBoard").document(noticeBoardIdx!!)
                 .update("likeCountList", FieldValue.arrayUnion(myIdx))
+        }
+    }
+    fun deleteLike(myIdx: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            db.collection("NoticeBoard").document(noticeBoardIdx!!)
+                .update("likeCountList", FieldValue.arrayRemove(myIdx))
         }
     }
 }

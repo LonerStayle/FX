@@ -50,4 +50,8 @@ class NoticeBoardDetailCommandAdapter(val clickEvent: (Reply) -> Unit) :
 
         }
     }
+
+    override fun getItemId(position: Int): Long {
+        return replyList[position].idx!!.toLong()
+    }
 }

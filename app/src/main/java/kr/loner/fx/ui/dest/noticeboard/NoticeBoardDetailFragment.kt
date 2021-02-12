@@ -38,9 +38,16 @@ class NoticeBoardDetailFragment : BaseFragment<FragmentNoticeboardDetailBinding>
         }
         ibnLikeSend.setOnClickListener {
             vm!!.userData ?: return@setOnClickListener
-            vm!!.sendLike(vm!!.userData!!.name)
-            noticeBoard!!.likeCountList?.toMutableList()?.add(vm!!.userData!!.name)
-            toastShort("좋아요 버튼을 눌렀습니다.")
+
+            if(noticeBoard!!.likeCountList?.contains(vm!!.userData!!.name) == false ) {
+                vm!!.sendLike(vm!!.userData!!.name)
+                noticeBoard!!.likeCountList?.toMutableList()?.add(vm!!.userData!!.name)
+                toastShort("좋아요 버튼을 눌렀습니다.")
+            }else {
+                vm!!.deleteLike(vm!!.userData!!.name)
+                noticeBoard!!.likeCountList?.toMutableList()?.remove(vm!!.userData!!.name)
+                toastShort("좋아요를 취소했습니다.")
+            }
         }
     }
 

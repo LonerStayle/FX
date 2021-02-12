@@ -45,9 +45,13 @@ class MainFragment :
                 binding.also { bind ->
                     bind.tvAppExit.setOnClickListener { requireActivity().finish() }
                     bind.tvUserCreate.setOnClickListener {
-                       this@MainFragment.binding.vm!!.userDataUpdate(
-                            UserData(name = bind.etUserName.text.toString())
-                        )
+                        val user = UserData(name = bind.etUserName.text.toString() )
+                        if(user.name.length <2)
+                            toastShort("이름은 최소 2글자 이상이여야 합니다.")
+                        else
+                       this@MainFragment.binding.vm!!.apply {
+                           userNameCheck(user){ userDataInsert(user) }
+                       }
                         this.dismiss()
                     }
                 }
