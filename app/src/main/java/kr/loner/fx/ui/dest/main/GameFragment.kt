@@ -40,6 +40,8 @@ class GameFragment : BaseFragment<FragmentGameBinding>(
         Intent(requireActivity(), GameActivity::class.java).also {
             it.putExtra("name", vm!!.name)
             it.putExtra("goToTheRecord", goToTheRecode)
+            if(goToTheRecode)
+                it.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(it)
         }
     }
