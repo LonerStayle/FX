@@ -15,6 +15,14 @@ fun timeStampConverter(tv: TextView,timestamp: Timestamp?){
         tv.text = it
     }
 }
+
+@BindingAdapter("app:timeStampSimpleConverter")
+fun timeStampSimpleConverter(tv: TextView,timestamp: Timestamp?){
+    timestamp?:return
+    SimpleDateFormat("yyyy년 MM월 dd일", Locale.KOREAN).format(timestamp.toDate()).also {
+        tv.text = it
+    }
+}
 @BindingAdapter("app:getReplyCount")
 fun getReplyCount(tv: TextView,list:HashMap<String,Reply>?){
     if(list.isNullOrEmpty()){

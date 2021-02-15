@@ -15,6 +15,7 @@ class MainViewModel(private val userRepository: UserRepository) : ViewModel() {
 
 
     private val db = FirebaseFirestore.getInstance()
+     var name: String? = null
 
     val userData: LiveData<UserData>
         get() = userRepository.getUser()

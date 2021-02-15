@@ -13,7 +13,7 @@
 
         <NumberPicker
             android:id="@+id/numberPicker_round"
-            maxValue="@{5}"
+            maxValue="@{8}"
             minValue="@{3}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
 
         <NumberPicker
             android:id="@+id/numberPicker_row"
-            maxValue="@{8}"
+            maxValue="@{6}"
             minValue="@{3}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,8 +34,8 @@
 
         <NumberPicker
             android:id="@+id/numberPicker_col"
-            maxValue="@{8}"
-            minValue="@{3}"
+            maxValue="@{7}"
+            minValue="@{4}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"

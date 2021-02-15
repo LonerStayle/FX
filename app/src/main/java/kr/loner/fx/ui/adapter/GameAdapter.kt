@@ -30,6 +30,15 @@ class GameAdapter(
     private var answerList = mutableListOf<Int>()
     private var answerClickList = mutableListOf<Int>()
     private val gameBoardSetting = row * col
+    private val answerCount = when (gameBoardSetting) {
+        in 0..12 -> 3
+        in 13..17 -> 4
+        in 18..23 -> 5
+        in 24..29 -> 6
+        in 30..36 -> 7
+        in 37..44 -> 8
+        else -> 9
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -47,6 +56,8 @@ class GameAdapter(
             holder.setWidthAndHeight(80f)
 
         when {
+
+
             (gameSettingPosition == Contents.GAME_READY_MODE) -> {
                 holder.setAnswerList()
                 holder.itemView.setOnClickListener {
@@ -89,6 +100,8 @@ class GameAdapter(
 
 
         fun setAnswerList() {
+
+
             beforeConfirmCorrectAnswerBind()
 
             answerList.clear()
@@ -101,42 +114,33 @@ class GameAdapter(
 
             val shuffleMode = checkAnswerList.shuffled()
 
-            answerList = mutableListOf(
-                shuffleMode[0],
-                shuffleMode[1],
-                shuffleMode[2]
-            )
+
+            for (i in 0 until answerCount) {
+                answerList.add(shuffleMode[i])
+            }
         }
 
         fun answerChecking() {
             beforeConfirmCorrectAnswerBind()
 
-            when (adapterPosition) {
+            for (i in 0 until answerCount) {
+                when (adapterPosition) {
 
-                answerList[0] -> {
-                        confirmCorrectAnswerBind()
-                }
-                answerList[1] -> {
-                    CoroutineScope(Dispatchers.Main).launch {
-                        delay(1500)
-                        confirmCorrectAnswerBind()
-                    }
-
-                }
-                answerList[2] -> {
-                    CoroutineScope(Dispatchers.Main).launch {
-                        delay(3000)
-                        confirmCorrectAnswerBind()
-
+                    answerList[i] -> {
+                        CoroutineScope(Dispatchers.Main).launch {
+                            delay(350*i.toLong())
+                            confirmCorrectAnswerBind()
+                        }
                     }
                 }
             }
+
         }
 
         fun itemClickEvent() {
 
 
-            if (answerClickList.size >= 3 || answerClickList.contains(adapterPosition))
+            if (answerClickList.size >= answerCount || answerClickList.contains(adapterPosition))
                 return
 
             confirmCorrectAnswerBind()
@@ -144,7 +148,7 @@ class GameAdapter(
             clickEvnet_timeBarAniReStart()
 
             when {
-                answerClickList.size >= 4 ||
+                answerClickList.size > answerCount ||
                         !answerList.contains(answerClickList.last()) -> {
                     wrongAnswerBind()
                     /**
@@ -161,7 +165,6 @@ class GameAdapter(
                         (answerList.size == answerClickList.size) &&
                         (answerList.containsAll(answerClickList)) ->
                     clickEvnet_goToTheNextRound()
-
 
 
                 (Contents.startRound == maxRound) &&

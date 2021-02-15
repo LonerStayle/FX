@@ -2,6 +2,7 @@ package kr.loner.fx.ui.dest.main
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import kr.loner.fx.R
 import kr.loner.fx.databinding.FragmentGameBinding
@@ -15,13 +16,27 @@ class GameFragment : BaseFragment<FragmentGameBinding>(
 ) {
     @SuppressLint("RestrictedApi")
     override fun FragmentGameBinding.setDataBind() {
+        //툴바 설정
         (activity as AppCompatActivity?)!!.supportActionBar!!.apply {
             setShowHideAnimationEnabled(false)
             hide()
         }
 
-            btnGameStart.setOnClickListener {
-                startActivity(Intent(requireActivity(), GameActivity::class.java))
-            }
+        vm!!.userData.observe(viewLifecycleOwner, { vm!!.name = it.name })
+
+        btnGameStart.setOnClickListener {
+            goToTheGame(false)
+        }
+        btnRecordCheck.setOnClickListener {
+            goToTheGame(true)
         }
     }
+
+    private fun FragmentGameBinding.goToTheGame(goToTheRecode:Boolean) {
+        Intent(requireActivity(), GameActivity::class.java).also {
+            it.putExtra("name", vm!!.name)
+            it.putExtra("goToTheRecord",goToTheRecode)
+            startActivity(it)
+        }
+    }
+}

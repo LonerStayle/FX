@@ -10,8 +10,8 @@ class GameSettingFragment : BaseFragment<FragmentGameSettingBinding>(R.layout.fr
 GameViewModel::class.java){
 
     override fun FragmentGameSettingBinding.setDataBind() {
+        goToTheRecordCheck()
         buttonGameStart.setOnClickListener {
-
             findNavController().navigate(
                 GameSettingFragmentDirections.actionGameSettingFragmentToGameFlowFragment(
                     maxRound = numberPickerRound.value,
@@ -19,6 +19,15 @@ GameViewModel::class.java){
                     col = numberPickerCol.value
                 )
             )
+        }
+    }
+
+    private fun goToTheRecordCheck(){
+        requireActivity().intent.getBooleanExtra("goToTheRecord",false).also {
+            if(it)
+                findNavController().navigate(R.id.action_global_gameRecordFragment)
+            else
+                return
         }
     }
 }

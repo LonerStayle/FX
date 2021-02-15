@@ -10,12 +10,10 @@ class GameRecordFragment : BaseFragment<FragmentGameRecordBinding>(R.layout.frag
 GameViewModel::class.java) {
 
 
-    private val args by lazy { GameRecordFragmentArgs.fromBundle(requireArguments()) }
-
 
     override fun FragmentGameRecordBinding.setDataBind() {
         rvGameFlow.adapter = GameRecordAdapter()
-        vm!!.gameModelList.observe(viewLifecycleOwner,  {
+        vm!!.gameList.observe(viewLifecycleOwner,  {
             (rvGameFlow.adapter as GameRecordAdapter).run {
                 gameModelList = it
                 notifyDataSetChanged()

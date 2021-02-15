@@ -11,11 +11,14 @@
     <string name="tv_gameReady">대기</string>
     <string name="tv_remember">암기하세요</string>
     <string name="tv_find">찾기-></string>
-    <string name="tv_answer">정답입니다.</string>
-    <string name="tv_wrongAnswer">틀렸습니다.</string>
+    <string name="tv_answer">정답</string>
+    <string name="tv_wrongAnswer">틀립니다.</string>
     <string name="tv_currentPage">%d/%d</string>
     <string name="record_maxRound">설정한 라운드 횟수:%d</string>
     <string name="record_row">행:%d</string>
     <string name="record_col">열:%d</string>
+    <string name="tv_timeOver">시간 초과</string>
 
+    <string name="ranking_rank">%d등</string>
+    <string name="ranking_score">%d점</string>
 </resources>

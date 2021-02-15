@@ -20,8 +20,10 @@
             android:defaultValue="3"
             app:argType="integer" />
         <action
-            android:id="@+id/action_gameFlowFragment_to_gameRecordFragment"
-            app:destination="@id/gameRecordFragment" />
+            android:id="@+id/action_gameFlowFragment_to_gameRankingFragment"
+            app:destination="@id/gameRankingFragment"
+            app:popUpTo="@id/gameSettingFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -36,6 +38,16 @@
         android:id="@+id/gameRecordFragment"
         android:name="kr.loner.fx.ui.dest.game.GameRecordFragment"
         android:label="GameRecordFragment" >
+
+        <action
+            android:id="@+id/action_gameRecordFragment_to_gameSettingFragment"
+            app:destination="@id/gameSettingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameRankingFragment"
+        android:name="kr.loner.fx.ui.dest.game.GameRankingFragment"
+        android:label="GameRankingFragment" >
+
         <argument android:name="maxRound"
             app:argType="integer"
             android:defaultValue="3" />
@@ -47,5 +59,10 @@
             android:name="row"
             app:argType="integer"
             android:defaultValue="3" />
+        <action
+            android:id="@+id/action_gameRankingFragment_to_gameSettingFragment"
+            app:destination="@id/gameSettingFragment" />
+
     </fragment>
+    <action android:id="@+id/action_global_gameRecordFragment" app:destination="@id/gameRecordFragment" />
 </navigation>
