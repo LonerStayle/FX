@@ -112,7 +112,8 @@ class GameFlowFragment : BaseFragment<FragmentGameFlowBinding>(
 
     private fun FragmentGameFlowBinding.previewCorrectAnswer() {
 
-        tvInfo.text = resources.getString(R.string.tv_remember)
+        if (context != null)
+            tvInfo.text = resources.getString(R.string.tv_remember)
 
         timeBarAnimation(dp)
 
@@ -246,8 +247,11 @@ class GameFlowFragment : BaseFragment<FragmentGameFlowBinding>(
         score: Int
     ) {
 
-        val game = GameModel(round = finalRound, row = row, col = col, myName = name, score = score,
-        timeStamp = Timestamp.now())
+        val game = GameModel(
+            round = finalRound, row = row, col = col, myName = name, score = score,
+            timeStamp = Timestamp.now().toDate()
+        )
+
 
         binding.vm!!.insert(game)
         binding.vm!!.insertRanking(game)
@@ -259,13 +263,5 @@ class GameFlowFragment : BaseFragment<FragmentGameFlowBinding>(
         super.onDestroyView()
         startRound = 1
         binding.vm!!.score = 0
-        Log.d("checkk", "스타트라운드${startRound}")
-        Log.d("checkk", "스코어${binding.vm!!.score}")
     }
-
 }
-
-
-
-
-

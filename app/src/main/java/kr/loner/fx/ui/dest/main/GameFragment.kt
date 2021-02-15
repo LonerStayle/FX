@@ -3,6 +3,7 @@ package kr.loner.fx.ui.dest.main
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.util.Log
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import kr.loner.fx.R
 import kr.loner.fx.databinding.FragmentGameBinding
@@ -22,6 +23,9 @@ class GameFragment : BaseFragment<FragmentGameBinding>(
             hide()
         }
 
+        ivGameTitleImage.animation =
+            AnimationUtils.loadAnimation(requireContext(), R.anim.anim_gametitle)
+
         vm!!.userData.observe(viewLifecycleOwner, { vm!!.name = it.name })
 
         btnGameStart.setOnClickListener {
@@ -32,10 +36,10 @@ class GameFragment : BaseFragment<FragmentGameBinding>(
         }
     }
 
-    private fun FragmentGameBinding.goToTheGame(goToTheRecode:Boolean) {
+    private fun FragmentGameBinding.goToTheGame(goToTheRecode: Boolean) {
         Intent(requireActivity(), GameActivity::class.java).also {
             it.putExtra("name", vm!!.name)
-            it.putExtra("goToTheRecord",goToTheRecode)
+            it.putExtra("goToTheRecord", goToTheRecode)
             startActivity(it)
         }
     }

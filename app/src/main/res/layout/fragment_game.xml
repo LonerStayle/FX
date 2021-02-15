@@ -11,10 +11,11 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/appCompatImageView"
+            android:id="@+id/iv_gameTitleImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher_background"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_baseline_view_comfy_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,15 +29,19 @@
             android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             android:text="게임 시작"
+            android:textSize="18sp"
+            android:textColor="#fff"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatImageView" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_gameTitleImage" />
 
         <Button
             android:id="@+id/btn_recordCheck"
             android:layout_width="120dp"
             android:layout_height="70dp"
             android:layout_marginTop="32dp"
-            android:text="게임 기록"
+            android:text="내 기록보기"
+            android:textSize="18sp"
+            android:textColor="#fff"
             app:layout_constraintEnd_toEndOf="@+id/btn_gameStart"
             app:layout_constraintStart_toStartOf="@+id/btn_gameStart"
             app:layout_constraintTop_toBottomOf="@+id/btn_gameStart" />

@@ -12,5 +12,10 @@
     <color name="colorMainFragmentBack">#BBDEFB</color>
     <color name="colorButtonSelectAfter">#42A5F5</color>
     <color name="colorButtonSelectBefore">#E0F7FA</color>
+    <color name="colorVeryWhite">#FAF6F6</color>
+
+    <color name="colorPrimary">#42A5F5</color>
+    <color name="colorPrimaryVariant">#2196F3</color>
+    <color name="colorOnPrimary">#BBDEFB</color>
 
 </resources>

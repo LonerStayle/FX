@@ -8,12 +8,13 @@ import androidx.room.TypeConverters
 import kr.loner.fx.db.dao.GameDao
 import kr.loner.fx.db.dao.UserDao
 import kr.loner.fx.db.entity.GameModel
+import kr.loner.fx.db.entity.GameModelDateConverter
 import kr.loner.fx.db.entity.UserData
 import kr.loner.fx.db.entity.UserDataLikeListConverter
 
 
 @Database(entities = [UserData::class, GameModel::class], version = 2)
-@TypeConverters(UserDataLikeListConverter::class)
+@TypeConverters(UserDataLikeListConverter::class,GameModelDateConverter::class)
 abstract class FXDataBase : RoomDatabase() {
     abstract val userDao: UserDao
     abstract val gameDao: GameDao

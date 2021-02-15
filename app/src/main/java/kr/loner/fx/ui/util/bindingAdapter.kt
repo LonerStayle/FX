@@ -16,10 +16,10 @@ fun timeStampConverter(tv: TextView,timestamp: Timestamp?){
     }
 }
 
-@BindingAdapter("app:timeStampSimpleConverter")
-fun timeStampSimpleConverter(tv: TextView,timestamp: Timestamp?){
+@BindingAdapter("app:dateTimeStampConverter")
+fun dateTimeStampConverter(tv: TextView,timestamp: Date?){
     timestamp?:return
-    SimpleDateFormat("yyyy년 MM월 dd일", Locale.KOREAN).format(timestamp.toDate()).also {
+    SimpleDateFormat("yyyy년 MM월 dd일", Locale.KOREAN).format(timestamp).also {
         tv.text = it
     }
 }
