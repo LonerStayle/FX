@@ -7,7 +7,7 @@
 
         <variable
             name="game"
-            type="kr.loner.fx.db.entity.GameModel" />
+            type="kr.grandoption.fx.db.entity.GameModel" />
         <variable
             name="ranking"
             type="Integer" />

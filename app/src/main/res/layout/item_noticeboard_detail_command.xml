@@ -5,7 +5,7 @@
     <data>
         <variable
             name="reply"
-            type="kr.loner.fx.db.entity.Reply" />
+            type="kr.grandoption.fx.db.entity.Reply" />
 
     </data>
 

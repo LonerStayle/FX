@@ -7,7 +7,7 @@
     <data>
         <variable
             name="vm"
-            type="kr.loner.fx.viewmodel.MainViewModel" />
+            type="kr.grandoption.fx.viewmodel.MainViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
 

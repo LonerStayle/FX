@@ -6,7 +6,7 @@
     <data>
         <variable
             name="gameModel"
-            type="kr.loner.fx.db.entity.GameModel" />
+            type="kr.grandoption.fx.db.entity.GameModel" />
 
 
     </data>

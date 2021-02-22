@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/gameFlowFragment"
-        android:name="kr.loner.fx.ui.dest.game.GameFlowFragment"
+        android:name="kr.grandoption.fx.ui.dest.game.GameFlowFragment"
         android:label="GameFlowFragment" >
         <argument
             android:name="maxRound"
@@ -28,7 +28,7 @@
 
     <fragment
         android:id="@+id/gameSettingFragment"
-        android:name="kr.loner.fx.ui.dest.game.GameSettingFragment"
+        android:name="kr.grandoption.fx.ui.dest.game.GameSettingFragment"
         android:label="GameSettingFragment" >
         <action
             android:id="@+id/action_gameSettingFragment_to_gameFlowFragment"
@@ -36,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameRecordFragment"
-        android:name="kr.loner.fx.ui.dest.game.GameRecordFragment"
+        android:name="kr.grandoption.fx.ui.dest.game.GameRecordFragment"
         android:label="GameRecordFragment" >
 
         <action
@@ -45,7 +45,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameRankingFragment"
-        android:name="kr.loner.fx.ui.dest.game.GameRankingFragment"
+        android:name="kr.grandoption.fx.ui.dest.game.GameRankingFragment"
         android:label="GameRankingFragment" >
 
         <argument android:name="maxRound"

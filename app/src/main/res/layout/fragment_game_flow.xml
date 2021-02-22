@@ -16,7 +16,7 @@
 
         <variable
             name="vm"
-            type="kr.loner.fx.viewmodel.GameViewModel" />
+            type="kr.grandoption.fx.viewmodel.GameViewModel" />
 
 
     </data>

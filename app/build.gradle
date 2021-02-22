@@ -16,7 +16,7 @@ android {
         dataBinding true
     }
     defaultConfig {
-        applicationId "kr.loner.fx"
+        applicationId "kr.grandoption.fx"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
