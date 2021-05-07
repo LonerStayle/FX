@@ -3,11 +3,11 @@
     <data>
         <variable
             name="vm"
-            type="kr.grandoption.fx.viewmodel.NoticeBoardViewModel" />
+            type="kr.loner.memorygame.viewmodel.NoticeBoardViewModel" />
 
         <variable
             name="noticeBoard"
-            type="kr.grandoption.fx.db.entity.NoticeBoard" />
+            type="kr.loner.memorygame.db.entity.NoticeBoard" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"

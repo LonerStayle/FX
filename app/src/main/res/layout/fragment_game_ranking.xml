@@ -5,7 +5,7 @@
     <data>
         <variable
             name="vm"
-            type="kr.grandoption.fx.viewmodel.GameViewModel" />
+            type="kr.loner.memorygame.viewmodel.GameViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
      android:layout_width="match_parent"

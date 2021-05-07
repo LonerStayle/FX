@@ -10,7 +10,7 @@
             type="Boolean" />
         <variable
             name="reply"
-            type="kr.grandoption.fx.db.entity.Reply" />
+            type="kr.loner.memorygame.db.entity.Reply" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"

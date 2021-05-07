@@ -5,6 +5,6 @@
 
     <fragment
         android:id="@+id/noticeBoardDetailFragment"
-        android:name="kr.grandoption.fx.ui.dest.noticeboard.NoticeBoardDetailFragment"
+        android:name="kr.loner.memorygame.ui.dest.noticeboard.NoticeBoardDetailFragment"
         android:label="NoticeBoardDetailFragment" />
 </navigation>

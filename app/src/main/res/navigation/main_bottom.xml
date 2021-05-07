@@ -7,18 +7,18 @@
 
     <fragment
         android:id="@+id/shareFragment"
-        android:name="kr.grandoption.fx.ui.dest.main.ShareFragment"
+        android:name="kr.loner.memorygame.ui.dest.main.ShareFragment"
         android:label="ShareFragment"
         tools:layout="@layout/fragment_share"/>
 
     <fragment
         android:id="@+id/noticeBoardFragment"
-        android:name="kr.grandoption.fx.ui.dest.main.NoticeBoardFragment"
+        android:name="kr.loner.memorygame.ui.dest.main.NoticeBoardFragment"
         android:label="noticeBoardFragment"
          />
 
     <fragment
         android:id="@+id/gameFragment"
-        android:name="kr.grandoption.fx.ui.dest.main.GameFragment"
+        android:name="kr.loner.memorygame.ui.dest.main.GameFragment"
         android:label="GameFragment" />
 </navigation>
